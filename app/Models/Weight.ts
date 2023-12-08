@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, BelongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, HasMany, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import Pet from 'App/Models/Pet'
 
 export default class Weight extends BaseModel {
@@ -9,8 +9,11 @@ export default class Weight extends BaseModel {
   @column()
   public weight: number
 
-  @belongsTo(() => Pet)
-  public pet: BelongsTo<typeof Pet>
+  @column()
+  public petId: number
+
+  @hasMany(() => Pet)
+  public pet: HasMany<typeof Pet>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

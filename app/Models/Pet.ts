@@ -1,19 +1,17 @@
 import { DateTime } from 'luxon'
 import {
   BaseModel,
-  belongsTo,
-  BelongsTo,
   column,
   hasMany,
-  manyToMany,
-  ManyToMany,
   HasMany,
   hasOne,
   HasOne,
+  ManyToMany,
+  manyToMany,
 } from '@ioc:Adonis/Lucid/Orm'
-import User from 'App/Models/User'
 import Weight from 'App/Models/Weight'
 import Type from 'App/Models/Type'
+import User from './User'
 
 export default class Pet extends BaseModel {
   @column({ isPrimary: true })
@@ -25,18 +23,16 @@ export default class Pet extends BaseModel {
   @column()
   public birthDate: Date
 
-  @belongsTo(() => User)
-  public user: BelongsTo<typeof User>
-
-  @manyToMany(() => User, {
-    pivotTable: 'follow_pets',
-  })
-  public followers: ManyToMany<typeof User>
+  @column()
+  public typeId: number
 
   @hasMany(() => Weight)
   public weights: HasMany<typeof Weight>
 
-  @hasOne(() => Type)
+  @hasOne(() => Type, {
+    foreignKey: 'id',
+    localKey: 'typeId',
+  })
   public type: HasOne<typeof Type>
 
   @column.dateTime({ autoCreate: true })

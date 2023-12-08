@@ -66,4 +66,10 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       message: 'Une erreur est survenue sur le serveur',
     })
   }
+
+  public async report(error: any, _ctx: HttpContextContract) {
+    if (this.shouldReport(error)) {
+      Logger.error(error.message, error)
+    }
+  }
 }

@@ -3,11 +3,7 @@ import Pet from 'App/Models/Pet'
 
 export default class PetsController {
   public async index({ response }: HttpContextContract) {
-    const pets = await Pet.query()
-      .select('name', 'birth_date')
-      .where('user_id', 1)
-      .preload('weights')
-      .preload('followers')
+    const pets = await Pet.query().select('*').from('pets').preload('type').preload('weights')
 
     return response.ok({
       status: 200,
