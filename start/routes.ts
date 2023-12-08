@@ -30,6 +30,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.get('/pets', 'PetsController.index').as('index')
+  Route.resource('pets.weights', 'WeightsController').apiOnly().as('weights')
 })
-  .middleware('auth')
+  // .middleware('auth')
   .as('pets')
