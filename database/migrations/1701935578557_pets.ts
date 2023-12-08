@@ -8,8 +8,7 @@ export default class extends BaseSchema {
       table.increments('id').primary()
       table.string('name', 50).notNullable()
       table.date('birth_date').nullable()
-      table.integer('user_id').unsigned().references('id').inTable('users')
-      table.integer('type_id').unsigned().references('id').inTable('types')
+      table.integer('type_id').unsigned().references('types.id')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
