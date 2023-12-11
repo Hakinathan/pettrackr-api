@@ -1,17 +1,7 @@
 import { DateTime } from 'luxon'
-import {
-  BaseModel,
-  column,
-  hasMany,
-  HasMany,
-  hasOne,
-  HasOne,
-  ManyToMany,
-  manyToMany,
-} from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import Weight from 'App/Models/Weight'
 import Type from 'App/Models/Type'
-import User from './User'
 
 export default class Pet extends BaseModel {
   @column({ isPrimary: true })
