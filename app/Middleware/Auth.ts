@@ -42,6 +42,7 @@ export default class AuthMiddleware {
          * succeeded here
          */
         auth.defaultGuard = guard
+        auth.user?.load('pets')
         return true
       }
     }
