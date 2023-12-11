@@ -59,6 +59,15 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       })
     }
 
+    if (error.code === 'E_ROW_NOT_FOUND') {
+      return ctx.response.notFound({
+        status: 404,
+        success: false,
+        code: 'E_ROW_NOT_FOUND',
+        message: "La ressource demandée n'existe pas",
+      })
+    }
+
     return ctx.response.internalServerError({
       status: 500,
       path: ctx.request.url(),
