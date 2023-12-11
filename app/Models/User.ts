@@ -1,14 +1,6 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import {
-  column,
-  beforeSave,
-  BaseModel,
-  hasMany,
-  HasMany,
-  manyToMany,
-  ManyToMany,
-} from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
 import Pet from 'App/Models/Pet'
 
 export default class User extends BaseModel {
@@ -26,6 +18,7 @@ export default class User extends BaseModel {
 
   @manyToMany(() => Pet, {
     pivotTable: 'follow_pets',
+    pivotColumns: ['owner'],
   })
   public pets: ManyToMany<typeof Pet>
 
