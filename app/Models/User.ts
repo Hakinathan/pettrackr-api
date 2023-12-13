@@ -17,8 +17,7 @@ export default class User extends BaseModel {
   public rememberMeToken: string | null
 
   @manyToMany(() => Pet, {
-    pivotTable: 'follow_pets',
-    pivotColumns: ['owner'],
+    pivotTable: 'user_pet',
   })
   public pets: ManyToMany<typeof Pet>
 
